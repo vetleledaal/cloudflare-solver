@@ -36,7 +36,7 @@ function solve_challenge($html, $url) {
 }
 
 function decode_cfchallenge($html, $domain) {
-	preg_match('/{"\w":([^}]+)};/', $html, $matches); // Initial value
+	preg_match('/{"\w+":([^}]+)};/', $html, $matches); // Initial value
 	$jschl = decode_cfint($matches[1]);
 	
 	preg_match_all('/([+\-*])=([^;]+);/', $html, $matches, PREG_SET_ORDER); // Operations
