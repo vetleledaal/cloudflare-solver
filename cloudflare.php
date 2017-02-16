@@ -71,7 +71,7 @@ class CloudflareSolver {
 
 	private static function decodeJsInt($jsInt) {
 		if(preg_match('/^\+\(\(?([^);]+)\)\+\(([^);]+)\)\)$/', $jsInt, $matches) === 1) {
-			// Got 2 sets seperates into tens and singles
+			// Got 2 sets seperated into tens and singles
 			return self::decodeJsInt($matches[1])*10 + self::decodeJsInt($matches[2]);
 		} else {
 			// Count the expressions that equals '1'
