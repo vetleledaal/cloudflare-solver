@@ -15,7 +15,7 @@ curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies.dat');
 curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies.dat');
 $result = curl_exec($ch);
 
-$cf = new CloudflareSolver($result, $url);
+$cf = new CloudflareSolver($url, $result);
 if($cf->isValid()) {
 	echo 'Waiting for ' . $cf->getTimeout()/1000 . ' seconds...' . "\r\n";
 	usleep($cf->getTimeout() * 1000);
