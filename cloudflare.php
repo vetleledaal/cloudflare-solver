@@ -6,9 +6,9 @@ class CloudflareSolver {
 	private $url;
 
 
-	function __construct($html, $url) {
-		$this->html = $html;
+	function __construct($url, $html) {
 		$this->url = parse_url($url);
+		$this->html = $html;
 	}
 
 	function getTimeout() {

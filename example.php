@@ -20,7 +20,7 @@ var s,t,o,p,b,r,e,a,k,i,n,g,f, SdgCLeG={"q":!+[]+!![]+!+[]+!![]+!![]+!![]};
   </form>
 HTML;
 
-$cf = new CloudflareSolver($html, 'http://example.com');
+$cf = new CloudflareSolver('http://example.com', $html);
 
 echo 'Waiting for ' . $cf->getTimeout()/1000 . ' seconds...' . "\r\n";
 usleep($cf->getTimeout() * 1000);
