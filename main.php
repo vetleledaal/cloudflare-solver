@@ -8,7 +8,10 @@ var s,t,o,p,b,r,e,a,k,i,n,g,f, SdgCLeG={"q":!+[]+!![]+!+[]+!![]+!![]+!![]};
         t = t.substr(r.length); t = t.substr(0,t.length-1);
         a = document.getElementById('jschl-answer');
         f = document.getElementById('challenge-form');
-        ;SdgCLeG.q+=+((!+[]+!![]+!![]+[])+(+[]));SdgCLeG.q*=+((!+[]+!+[]+!![]+!+[]+[])+(+!![]));SdgCLeG.q-=+((!+[]+!![]+!![]+[])+(+!![]));SdgCLeG.q*=+((+!![]+[])+(!+[]+!![]+!![]+!![]+!![]+!![]+!![]+!![]));SdgCLeG.q*=+((!+[]+!![]+!![]+!![]+[])+(+[]));a.value = parseInt(SdgCLeG.q, 10) + t.length; 
+        ;SdgCLeG.q+=+((!+[]+!![]+!![]+[])+(+[]));SdgCLeG.q*=+((!+[]+!+[]+!![]+!+[]+[])+(+!![]));SdgCLeG.q-=+((!+[]+!![]+!![]+[])+(+!![]));SdgCLeG.q*=+((+!![]+[])+(!+[]+!![]+!![]+!![]+!![]+!![]+!![]+!![]));SdgCLeG.q*=+((!+[]+!![]+!![]+!![]+[])+(+[]));a.value = parseInt(SdgCLeG.q, 10) + t.length; '; 121'
+        f.submit();
+      }, 4000);
+    }, false); 
   <form id="challenge-form" action="/cdn-cgi/l/chk_jschl" method="get">
     <input type="hidden" name="jschl_vc" value="1a79a4d60de6718e8e5b326e338ae533"/>
     <input type="hidden" name="pass" value="1487112786.013-dEMzfIsOva"/>
@@ -16,11 +19,23 @@ var s,t,o,p,b,r,e,a,k,i,n,g,f, SdgCLeG={"q":!+[]+!![]+!+[]+!![]+!![]+!![]};
   </form>
 HTML;
 
-echo solve_challenge($html, 'http://example.com');
+echo solve_cfchallenge($html, 'http://example.com');
 
+function get_cftimeout($html) {
+	preg_match('/}, (\d+)\);\n/', $html, $matches);
+	return $matches[1];
+}
 
+function valid_cfchallenge($html) {
+	return strpos($html, '/cdn-cgi/l/chk_jschl') !== false
+	    && strpos($html, 'challenge-form') !== false
+	    && strpos($html, 'jschl_vc') !== false
+	    && strpos($html, 'jschl_answer') !== false;
+}
 
-function solve_challenge($html, $url) {
+function solve_cfchallenge($html, $url) {
+	if(!valid_cfchallenge($html))
+		return false;
 	$url = parse_url($url);
 	$fields = array();
 	
@@ -62,6 +77,8 @@ function do_math(&$a, $b, $op) {
 		case '+': $a += $b; return true;
 		case '-': $a -= $b; return true;
 		case '*': $a *= $b; return true;
+		case '/': $a /= $b; return true;
+		case '%': $a %= $b; return true;
 	}
 	echo "Unknown operator $op\n";
 	return false;
