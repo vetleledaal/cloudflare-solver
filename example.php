@@ -20,9 +20,8 @@ var s,t,o,p,b,r,e,a,k,i,n,g,f, SdgCLeG={"q":!+[]+!![]+!+[]+!![]+!![]+!![]};
   </form>
 HTML;
 
-$cf = new CloudflareSolver('http://example.com', $html);
-
-echo 'Waiting for ' . $cf->getTimeout()/1000 . ' seconds...' . "\r\n";
+$cf = new CloudflareSolver('example.com', $html);
+echo 'Waiting for ' . $cf->getTimeout() / 1000 . ' seconds...' . PHP_EOL;
 usleep($cf->getTimeout() * 1000);
 
 // TODO: Go to the URL
