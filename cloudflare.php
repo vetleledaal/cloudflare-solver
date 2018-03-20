@@ -36,16 +36,16 @@ class CloudflareSolver {
 		$query['jschl_answer'] = $this->solveJsChallenge();
 
 		return $query['jschl_answer']
-			 ? $this->url['scheme'] . '://' . $this->url['host'] . '/cdn-cgi/l/chk_jschl?' . http_build_query($query)
-			 : false;
+		     ? $this->url['scheme'] . '://' . $this->url['host'] . '/cdn-cgi/l/chk_jschl?' . http_build_query($query)
+		     : false;
 	}
 
 	function isValid() {
 		// Check if page is likely to be a Cloudflare challenge
 		return strpos($this->html, '/cdn-cgi/l/chk_jschl') !== false
-			&& strpos($this->html, 'challenge-form') !== false
-			&& strpos($this->html, 'jschl_vc') !== false
-			&& strpos($this->html, 'jschl_answer') !== false;
+		    && strpos($this->html, 'challenge-form') !== false
+		    && strpos($this->html, 'jschl_vc') !== false
+		    && strpos($this->html, 'jschl_answer') !== false;
 	}
 
 	function solveJsChallenge() {
