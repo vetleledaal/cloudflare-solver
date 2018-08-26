@@ -8,7 +8,7 @@ if(!($url = !empty($argv[1]) ? $argv[1] : false)) {
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0');
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0');
 
 curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
